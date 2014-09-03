@@ -67,7 +67,7 @@ void redraw() {
   context.fillStyle = '#000';
   for (Point p in points) {
     context.beginPath();
-    context.arc(p.x - 6, p.y - 6, 12, 0, PI * 2);
+    context.arc(p.x, p.y, 12, 0, PI * 2);
     context.fill();
   }
 }
