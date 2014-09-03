@@ -1,0 +1,7 @@
+name: shape_tracer
+version: 0.0.1
+author: Alex Nichol <unixpickle@gmail.com>
+description: A sample web application
+homepage: https://github.com/unixpickle/shape_tracer
+dependencies:
+  browser: any
