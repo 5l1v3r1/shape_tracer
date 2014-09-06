@@ -27,7 +27,7 @@ void clear(_) {
 
 void fill(_) {
   if (fillPath != null) return;
-  if (points.length > 12) {
+  if (points.length > 13) {
     window.alert('the complexity of this algorithm is O(n!).' +
         ' You do not want to try this many points.');
     return;

@@ -41,8 +41,8 @@ class FillSearch {
   FillSearch(this.points);
   
   List<Point> findPath() {
-    _path = [];
-    _remaining = new List.from(points);
+    _path = new List.from(points.sublist(0, 1));
+    _remaining = new List.from(points.sublist(1));
     if (!_search()) {
       return null;
     }
@@ -53,7 +53,17 @@ class FillSearch {
     if (!_validatePath()) return false;
     if (_remaining.length == 0) return true;
     
-    // TODO: here, attempt to sort _remaining as a distance-based heuristic
+    List oldRemaining = new List.from(_remaining);
+    
+    // use a distance-based heuristic to explore the closest points first
+    _remaining.sort((Point p1, Point p2) {
+      double d1 = _path.last.distanceTo(p1);
+      double d2 = _path.last.distanceTo(p2);
+      if (d1 < d2) return -1;
+      else if (d1 == d2) return 0;
+      else return 1;
+    });
+    
     for (int i = 0; i < _remaining.length; ++i) {
       Point p = _remaining[i];
       _remaining.removeAt(i);
@@ -62,6 +72,8 @@ class FillSearch {
       _path.removeLast();
       _remaining.insert(i, p);
     }
+    
+    _remaining = oldRemaining;
     return false;
   }
   
